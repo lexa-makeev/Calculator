@@ -11,13 +11,21 @@ function App() {
     const calculateResult = () => {
         try {
             const result = evaluate(expression + number).toString();
-            setNumber(result);
-            setExpression("");
-            setNextOp(true);
+            if (result === "Infinity" || result === "-Infinity") {
+                setNumber(number);
+                setExpression("");
+                setNextOp(true);
+            } else {
+                setNumber(result);
+                setExpression("");
+                setNextOp(true);
+            }
         } catch (error) {
             setNumber("Error");
         }
     };
+    
+    
 
     const handleInput = (input) => {
         if (nextOp && !isNaN(input)) {
